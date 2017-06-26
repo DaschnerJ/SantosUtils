@@ -108,9 +108,12 @@ public class FileManager {
          */
         String absolutePath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
         /**
-         * Cut off extra / in front.
+         * Cut off extra / or \ in front.
          */
         absolutePath = absolutePath.substring(0, absolutePath.lastIndexOf("/"));
+        absolutePath = absolutePath.replaceAll("^\\\\", "");
+        absolutePath = absolutePath.replaceAll("^/", "");
+
         /**
          * Due to windows allowing the ' ' in directory naming, windows will
          * replace the ' ' with %20 as an indication. However, we do not want
